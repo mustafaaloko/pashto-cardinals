@@ -74,5 +74,6 @@ class PashtoCardinalTest extends \PHPUnit_Framework_TestCase
     	$this->assertEquals((new PashtoCardinal(404))->convertToText(), 'Salor Sawa Salor');
     	$this->assertEquals((new PashtoCardinal(634))->convertToText(), 'Eshpag Sawa Salor Dersh');
     	$this->assertEquals((new PashtoCardinal(813))->convertToText(), 'Ata Sawa Deyarlas');
+    	$this->assertEquals((new PashtoCardinal(999))->convertToText(), 'Nah Sawa Nah Nawee');
     }
 }
