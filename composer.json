@@ -1,0 +1,50 @@
+{
+    "name": "aloko/pashto-cardinals",
+    "type": "library",
+    "description": "A package to display numbers in Pashto text.",
+    "keywords": [
+        "pashto numbers",
+        "pashto cardinals",
+        "pashto words"
+    ],
+    "homepage": "https://github.com/mustafaaloko/pashto-cardinals",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mustafa Ehsan Alokozay",
+            "email": "mustafa.aloko@gmail.com",
+            "homepage": "http://mustafaaloko.github.io",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "~5.6|~7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "~4.0||~5.0",
+        "squizlabs/php_codesniffer": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aloko\\PashtoCardinals\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/"
+        ]
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
