@@ -60,6 +60,7 @@ class PashtoCardinalTest extends \PHPUnit_Framework_TestCase
 
     public function test_hunderds_smaller_than_two_hundred() 
     {
+        $this->assertEquals((new PashtoCardinal(100))->convertToText(), 'Sel');
     	$this->assertEquals((new PashtoCardinal(101))->convertToText(), 'Yaw Salo Yaw');
     	$this->assertEquals((new PashtoCardinal(122))->convertToText(), 'Yaw Salo Dwa Wisht');
     	$this->assertEquals((new PashtoCardinal(154))->convertToText(), 'Yaw Salo Salor Panzos');
@@ -75,5 +76,18 @@ class PashtoCardinalTest extends \PHPUnit_Framework_TestCase
     	$this->assertEquals((new PashtoCardinal(634))->convertToText(), 'Eshpag Sawa Salor Dersh');
     	$this->assertEquals((new PashtoCardinal(813))->convertToText(), 'Ata Sawa Deyarlas');
     	$this->assertEquals((new PashtoCardinal(999))->convertToText(), 'Nah Sawa Nah Nawee');
+    }
+
+    public function test_numbers_more_than_hundreds() 
+    {
+        $this->assertEquals((new PashtoCardinal(1000))->convertToText(), 'Yaw Zara');
+        $this->assertEquals((new PashtoCardinal(6000))->convertToText(), 'Eshpag Zara');
+        $this->assertEquals((new PashtoCardinal(1234))->convertToText(), 'Yaw Zara Dwa Sawa Salor Dersh');
+        $this->assertEquals((new PashtoCardinal(4234))->convertToText(), 'Salor Zara Dwa Sawa Salor Dersh');
+        $this->assertEquals((new PashtoCardinal(999999))->convertToText(), 'Nah Sawa Nah Nawee Zara Nah Sawa Nah Nawee');
+        $this->assertEquals((new PashtoCardinal(78654321))->convertToText(), 'Ata Awyaa Million Eshpag Sawa Salor Panzos Zara Dre Sawa Yaw Wisht');
+        $this->assertEquals((new PashtoCardinal(9878654321))->convertToText(), 'Nah Milliard Ata Sawa Ata Awyaa Million Eshpag Sawa Salor Panzos Zara Dre Sawa Yaw Wisht');
+        $this->assertEquals((new PashtoCardinal(8000000000))->convertToText(), 'Ata Milliard');
+
     }
 }

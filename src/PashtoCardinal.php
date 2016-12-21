@@ -12,15 +12,17 @@ class PashtoCardinal
 
     const TENS = ['Las', 'Shel', 'Dersh', 'Salwikht', 'Panzos', 'Eshpeta', 'Awyaa', 'Atyaa', 'Nawee'];
 
-    public function __construct(int $number)
+    const BIGGER_THAN_THOUSANDS = ['Zara', 'Million', 'Milliard'];
+
+    public function __construct($number)
     {
-        $this->number = $number;    
+        $this->number = (int) $number;    
     }
 
     public function convertToText() 
     {
         if ($this->number == 0) {
-            return 'Separ';
+            return '';
         }
 
         $numberStr = (string) $this->number;
@@ -44,12 +46,29 @@ class PashtoCardinal
             }
         } else if ($this->getNumLength($this->number) == 3) {
             $tensNum = substr((string) $this->number, -2);
-            $tensText = (new self((int) $tensNum))->convertToText() == 'Separ' ? '' : ' ' . (new self((int) $tensNum))->convertToText();
+            $tensText = (new self((int) $tensNum))->convertToText();
 
             if ($numberList[2] == 1) {
-                return 'Yaw Salo' . $tensText;
+                if ($tensText == '') {
+                    return 'Sel';
+                }
+
+                return 'Yaw Salo ' . $tensText;
             } else {
-                return static::ONES[$numberList[2] - 1] . ' Sawa' . $tensText;
+                return trim(static::ONES[$numberList[2] - 1] . ' Sawa ' . $tensText);
+            }
+        }  else if ($this->getNumLength($this->number) > 3) {
+            $numbersChunked = array_map(function($num) {
+                return strrev($num);
+            }, str_split(strrev($numberStr), 3));
+
+            $numbersChunked = array_reverse($numbersChunked);
+
+            foreach ($numbersChunked as $index => $value) {
+                $numbers = $numbersChunked;
+                array_shift($numbers);
+
+                return trim((new self($value))->convertToText() . ' ' . static::BIGGER_THAN_THOUSANDS[count($numbersChunked) - 2] . ' ' . (new self(implode('', $numbers)))->convertToText());
             }
         }
     }
