@@ -6,7 +6,7 @@ class PashtoCardinalTest extends \PHPUnit_Framework_TestCase
 {
     public function test_number_is_converted_to_text()
     {
-    	$numberInText = (new PashtoCardinal(8))->convertToText();
+    	$numberInText = PashtoCardinal::convert(8);
         $expected = 'Ata';
 
         $this->assertEquals($numberInText, $expected);
@@ -14,80 +14,79 @@ class PashtoCardinalTest extends \PHPUnit_Framework_TestCase
 
     public function test_ones_conversion() 
     {
-    	$this->assertEquals((new PashtoCardinal(1))->convertToText(), 'Yaw');
-        $this->assertEquals((new PashtoCardinal(2))->convertToText(), 'Dwa');
-        $this->assertEquals((new PashtoCardinal(3))->convertToText(), 'Dre');
-        $this->assertEquals((new PashtoCardinal(4))->convertToText(), 'Salor');
-        $this->assertEquals((new PashtoCardinal(5))->convertToText(), 'Penza');
-        $this->assertEquals((new PashtoCardinal(6))->convertToText(), 'Eshpag');
-        $this->assertEquals((new PashtoCardinal(7))->convertToText(), 'Owa');
-        $this->assertEquals((new PashtoCardinal(8))->convertToText(), 'Ata');
-        $this->assertEquals((new PashtoCardinal(9))->convertToText(), 'Nah');
+    	$this->assertEquals(PashtoCardinal::convert(1), 'Yaw');
+        $this->assertEquals(PashtoCardinal::convert(2), 'Dwa');
+        $this->assertEquals(PashtoCardinal::convert(3), 'Dre');
+        $this->assertEquals(PashtoCardinal::convert(4), 'Salor');
+        $this->assertEquals(PashtoCardinal::convert(5), 'Penza');
+        $this->assertEquals(PashtoCardinal::convert(6), 'Eshpag');
+        $this->assertEquals(PashtoCardinal::convert(7), 'Owa');
+        $this->assertEquals(PashtoCardinal::convert(8), 'Ata');
+        $this->assertEquals(PashtoCardinal::convert(9), 'Nah');
     }
 
     public function test_tens_lesser_than_twenty_one() 
     {
-    	$this->assertEquals((new PashtoCardinal(11))->convertToText(), 'Yawolas');
-        $this->assertEquals((new PashtoCardinal(12))->convertToText(), 'Dwalas');
-        $this->assertEquals((new PashtoCardinal(13))->convertToText(), 'Deyarlas');
-        $this->assertEquals((new PashtoCardinal(14))->convertToText(), 'Sowarlas');
-        $this->assertEquals((new PashtoCardinal(15))->convertToText(), 'Penzalas');
-        $this->assertEquals((new PashtoCardinal(16))->convertToText(), 'Eshparlas');
-        $this->assertEquals((new PashtoCardinal(17))->convertToText(), 'Owalas');
-        $this->assertEquals((new PashtoCardinal(18))->convertToText(), 'Atalas');
-        $this->assertEquals((new PashtoCardinal(19))->convertToText(), 'Nolas');
-        $this->assertEquals((new PashtoCardinal(20))->convertToText(), 'Shel');
+    	$this->assertEquals(PashtoCardinal::convert(11), 'Yawolas');
+        $this->assertEquals(PashtoCardinal::convert(12), 'Dwalas');
+        $this->assertEquals(PashtoCardinal::convert(13), 'Deyarlas');
+        $this->assertEquals(PashtoCardinal::convert(14), 'Sowarlas');
+        $this->assertEquals(PashtoCardinal::convert(15), 'Penzalas');
+        $this->assertEquals(PashtoCardinal::convert(16), 'Eshparlas');
+        $this->assertEquals(PashtoCardinal::convert(17), 'Owalas');
+        $this->assertEquals(PashtoCardinal::convert(18), 'Atalas');
+        $this->assertEquals(PashtoCardinal::convert(19), 'Nolas');
+        $this->assertEquals(PashtoCardinal::convert(20), 'Shel');
     }
 
     public function test_tens_bigger_than_thirty() 
     {
-    	$this->assertEquals((new PashtoCardinal(30))->convertToText(), 'Dersh');
-    	$this->assertEquals((new PashtoCardinal(50))->convertToText(), 'Panzos');
-
-    	$this->assertEquals((new PashtoCardinal(41))->convertToText(), 'Yaw Salwikht');
-    	$this->assertEquals((new PashtoCardinal(62))->convertToText(), 'Dwa Eshpeta');
-    	$this->assertEquals((new PashtoCardinal(73))->convertToText(), 'Dre Awyaa');
-    	$this->assertEquals((new PashtoCardinal(84))->convertToText(), 'Salor Atyaa');
-    	$this->assertEquals((new PashtoCardinal(97))->convertToText(), 'Owa Nawee');
+    	$this->assertEquals(PashtoCardinal::convert(30), 'Dersh');
+    	$this->assertEquals(PashtoCardinal::convert(50), 'Panzos');
+    	$this->assertEquals(PashtoCardinal::convert(41), 'Yaw Salwikht');
+    	$this->assertEquals(PashtoCardinal::convert(62), 'Dwa Eshpeta');
+    	$this->assertEquals(PashtoCardinal::convert(73), 'Dre Awyaa');
+    	$this->assertEquals(PashtoCardinal::convert(84), 'Salor Atyaa');
+    	$this->assertEquals(PashtoCardinal::convert(97), 'Owa Nawee');
     }
 
     public function test_tens_between_twenty_and_thirty() 
     {
-    	$this->assertEquals((new PashtoCardinal(21))->convertToText(), 'Yaw Wisht');
-    	$this->assertEquals((new PashtoCardinal(23))->convertToText(), 'Dre Wisht');
-    	$this->assertEquals((new PashtoCardinal(29))->convertToText(), 'Nah Wisht');
+    	$this->assertEquals(PashtoCardinal::convert(21), 'Yaw Wisht');
+    	$this->assertEquals(PashtoCardinal::convert(23), 'Dre Wisht');
+    	$this->assertEquals(PashtoCardinal::convert(29), 'Nah Wisht');
     }
 
     public function test_hunderds_smaller_than_two_hundred() 
     {
-        $this->assertEquals((new PashtoCardinal(100))->convertToText(), 'Sel');
-    	$this->assertEquals((new PashtoCardinal(101))->convertToText(), 'Yaw Salo Yaw');
-    	$this->assertEquals((new PashtoCardinal(122))->convertToText(), 'Yaw Salo Dwa Wisht');
-    	$this->assertEquals((new PashtoCardinal(154))->convertToText(), 'Yaw Salo Salor Panzos');
-    	$this->assertEquals((new PashtoCardinal(199))->convertToText(), 'Yaw Salo Nah Nawee');
+        $this->assertEquals(PashtoCardinal::convert(100), 'Sel');
+    	$this->assertEquals(PashtoCardinal::convert(101), 'Yaw Salo Yaw');
+    	$this->assertEquals(PashtoCardinal::convert(122), 'Yaw Salo Dwa Wisht');
+    	$this->assertEquals(PashtoCardinal::convert(154), 'Yaw Salo Salor Panzos');
+    	$this->assertEquals(PashtoCardinal::convert(199), 'Yaw Salo Nah Nawee');
     }
 
     public function test_hundreds_bigger_than_two_hundred() 
     {
-    	$this->assertEquals((new PashtoCardinal(200))->convertToText(), 'Dwa Sawa');
-    	$this->assertEquals((new PashtoCardinal(500))->convertToText(), 'Penza Sawa');
-    	$this->assertEquals((new PashtoCardinal(222))->convertToText(), 'Dwa Sawa Dwa Wisht');
-    	$this->assertEquals((new PashtoCardinal(404))->convertToText(), 'Salor Sawa Salor');
-    	$this->assertEquals((new PashtoCardinal(634))->convertToText(), 'Eshpag Sawa Salor Dersh');
-    	$this->assertEquals((new PashtoCardinal(813))->convertToText(), 'Ata Sawa Deyarlas');
-    	$this->assertEquals((new PashtoCardinal(999))->convertToText(), 'Nah Sawa Nah Nawee');
+    	$this->assertEquals(PashtoCardinal::convert(200), 'Dwa Sawa');
+    	$this->assertEquals(PashtoCardinal::convert(500), 'Penza Sawa');
+    	$this->assertEquals(PashtoCardinal::convert(222), 'Dwa Sawa Dwa Wisht');
+    	$this->assertEquals(PashtoCardinal::convert(404), 'Salor Sawa Salor');
+    	$this->assertEquals(PashtoCardinal::convert(634), 'Eshpag Sawa Salor Dersh');
+    	$this->assertEquals(PashtoCardinal::convert(813), 'Ata Sawa Deyarlas');
+    	$this->assertEquals(PashtoCardinal::convert(999), 'Nah Sawa Nah Nawee');
     }
 
     public function test_numbers_more_than_hundreds() 
     {
-        $this->assertEquals((new PashtoCardinal(1000))->convertToText(), 'Yaw Zara');
-        $this->assertEquals((new PashtoCardinal(6000))->convertToText(), 'Eshpag Zara');
-        $this->assertEquals((new PashtoCardinal(1234))->convertToText(), 'Yaw Zara Dwa Sawa Salor Dersh');
-        $this->assertEquals((new PashtoCardinal(4234))->convertToText(), 'Salor Zara Dwa Sawa Salor Dersh');
-        $this->assertEquals((new PashtoCardinal(999999))->convertToText(), 'Nah Sawa Nah Nawee Zara Nah Sawa Nah Nawee');
-        $this->assertEquals((new PashtoCardinal(78654321))->convertToText(), 'Ata Awyaa Million Eshpag Sawa Salor Panzos Zara Dre Sawa Yaw Wisht');
-        $this->assertEquals((new PashtoCardinal(9878654321))->convertToText(), 'Nah Milliard Ata Sawa Ata Awyaa Million Eshpag Sawa Salor Panzos Zara Dre Sawa Yaw Wisht');
-        $this->assertEquals((new PashtoCardinal(8000000000))->convertToText(), 'Ata Milliard');
+        $this->assertEquals(PashtoCardinal::convert(1000), 'Yaw Zara');
+        $this->assertEquals(PashtoCardinal::convert(6000), 'Eshpag Zara');
+        $this->assertEquals(PashtoCardinal::convert(1234), 'Yaw Zara Dwa Sawa Salor Dersh');
+        $this->assertEquals(PashtoCardinal::convert(4234), 'Salor Zara Dwa Sawa Salor Dersh');
+        $this->assertEquals(PashtoCardinal::convert(999999), 'Nah Sawa Nah Nawee Zara Nah Sawa Nah Nawee');
+        $this->assertEquals(PashtoCardinal::convert(78654321), 'Ata Awyaa Million Eshpag Sawa Salor Panzos Zara Dre Sawa Yaw Wisht');
+        $this->assertEquals(PashtoCardinal::convert(9878654321), 'Nah Milliard Ata Sawa Ata Awyaa Million Eshpag Sawa Salor Panzos Zara Dre Sawa Yaw Wisht');
+        $this->assertEquals(PashtoCardinal::convert(8000000000), 'Ata Milliard');
 
     }
 }
