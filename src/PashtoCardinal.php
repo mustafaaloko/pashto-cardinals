@@ -19,11 +19,21 @@ class PashtoCardinal
         $this->number = (int) $number;    
     }
 
+    /**
+     * Convert the number to Pashto text (old API).
+     * 
+     * @return String
+     */
     public function convertToText() 
     {
         return $this->convertNumToText();
     }
-    
+
+    /**
+     * Convert the number to Pashto text (new API).
+     * 
+     * @return String
+     */
     public function convertNumToText() 
     {
         if ($this->number == 0) {
@@ -91,12 +101,25 @@ class PashtoCardinal
         }
     }
 
+    /**
+     * Get the length of number.
+     * 
+     * @param  int  $number
+     * @return String
+     */
     protected function getNumLength($number) 
     {
         return strlen((string) $number);
     }
 
-    protected function getNumAsArray($number)
+    /**
+     * Get the number in array format. Ones starting at zero index and
+     * others upto bigger indexes.
+     * 
+     * @param  int  $number
+     * @return Array
+     */
+    public function getNumAsArray($number)
     {
         return array_reverse(str_split((string) $number));
     }
@@ -136,6 +159,13 @@ class PashtoCardinal
         return $this->getNumLength($number) > 3;
     }
 
+    /**
+     * Provide the felxibility so convert can be called in a static manner.
+     * 
+     * @param  String  $name
+     * @param  String  $arguments
+     * @return String
+     */
     public static function __callStatic($name, $arguments)
     {
         if ($name == 'convert') {
