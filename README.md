@@ -22,7 +22,7 @@ $ composer require aloko/pashto-cardinals
 ``` php
 use Aloko\PashtoCardinals\PashtoCardinal;
 
-echo (new PashtoCardinal(222))->convertToText(); // This will return 'Dwa Sawa Dwa Wisht'
+echo PashtoCardinal::convert(222); // This will return 'Dwa Sawa Dwa Wisht'
 ```
 
 ## Security
