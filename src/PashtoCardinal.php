@@ -19,6 +19,11 @@ class PashtoCardinal
         $this->number = (int) $number;    
     }
 
+    public function convertToText() 
+    {
+        return $this->convertNumToText();
+    }
+    
     public function convertNumToText() 
     {
         if ($this->number == 0) {
@@ -26,7 +31,7 @@ class PashtoCardinal
         }
 
         $numberAsString = (string) $this->number;
-        $numberAsArray = $this->getNumAsArray($this->number); 
+        $numberAsArray = $this->getNumAsArray($this->number);
         $numberLength = $this->getNumLength($this->number);
 
         if ($this->numberIsSmallerThanTen($this->number)) {
@@ -39,7 +44,11 @@ class PashtoCardinal
 
         if ($this->numberIsTwenty($this->number)) {
             return static::TENS_SMALLER_THAN_TWENTYONE[9];
-        } 
+        }
+
+        // if ($this->numberIsBetweenTwentyOneAndThirty) {
+
+        // }
 
         if ($this->numberIsBetweenTwentyOneAndNintyNine($this->number)) {
             $oneField = $numberAsArray[0] == '0' ? '' : static::ONES[$numberAsArray[0] - 1] . ' ';
@@ -66,7 +75,7 @@ class PashtoCardinal
             }
         } 
 
-        if ($numberLength > 3) {
+        if ($this->numberIsThousandOrBigger($this->number)) {
             $numbersChunked = array_map(function($num) {
                 return strrev($num);
             }, str_split(strrev($numberAsString), 3));
@@ -120,6 +129,11 @@ class PashtoCardinal
     {
         return $this->numberIsBetweenTenAndNintyNine($number) && 
             (! $this->numberIsTwenty($number) && ! $this->numberIsBetweenElevenAndNineteen($number));
+    }
+
+    protected function numberIsThousandOrBigger($number)
+    {
+        return $this->getNumLength($number) > 3;
     }
 
     public static function __callStatic($name, $arguments)

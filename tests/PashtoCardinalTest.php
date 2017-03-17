@@ -87,6 +87,10 @@ class PashtoCardinalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(PashtoCardinal::convert(78654321), 'Ata Awyaa Million Eshpag Sawa Salor Panzos Zara Dre Sawa Yaw Wisht');
         $this->assertEquals(PashtoCardinal::convert(9878654321), 'Nah Milliard Ata Sawa Ata Awyaa Million Eshpag Sawa Salor Panzos Zara Dre Sawa Yaw Wisht');
         $this->assertEquals(PashtoCardinal::convert(8000000000), 'Ata Milliard');
+    }
 
+    public function test_old_api() 
+    {
+        $this->assertEquals((new PashtoCardinal(222))->convertToText(), 'Dwa Sawa Dwa Wisht');
     }
 }
