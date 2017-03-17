@@ -56,10 +56,6 @@ class PashtoCardinal
             return static::TENS_SMALLER_THAN_TWENTYONE[9];
         }
 
-        // if ($this->numberIsBetweenTwentyOneAndThirty) {
-
-        // }
-
         if ($this->numberIsBetweenTwentyOneAndNintyNine($this->number)) {
             $oneField = $numberAsArray[0] == '0' ? '' : static::ONES[$numberAsArray[0] - 1] . ' ';
 
@@ -119,7 +115,7 @@ class PashtoCardinal
      * @param  int  $number
      * @return Array
      */
-    public function getNumAsArray($number)
+    protected function getNumAsArray($number)
     {
         return array_reverse(str_split((string) $number));
     }
