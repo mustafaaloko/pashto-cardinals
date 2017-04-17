@@ -162,6 +162,12 @@ class PashtoCardinal
         return $this->getNumLength($number) > 3;
     }
 
+    /**
+     * Checks whether number is a decimal fractional or not.
+     * 
+     * @param  int|string $number
+     * @return string
+     */
     protected function numberHasDecimalPoint($number) 
     {
         return sizeof(explode('.' , $number)) > 1;
