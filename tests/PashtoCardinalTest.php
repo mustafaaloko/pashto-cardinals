@@ -98,4 +98,10 @@ class PashtoCardinalTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(PashtoCardinal::convert(123.321), 'Yaw Salo Dre Wisht Asharya Dre Dwa Yaw');
     }
+
+    public function test_convert_accepts_string() 
+    {
+        $this->assertEquals(PashtoCardinal::convert('3'), 'Dre');
+        $this->assertEquals(PashtoCardinal::convert('3.23'), 'Dre Asharya Dwa Dre');
+    }
 }
