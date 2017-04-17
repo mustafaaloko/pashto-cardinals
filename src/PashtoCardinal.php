@@ -46,9 +46,9 @@ class PashtoCardinal
 
         if ($this->numberIsFloat($this->number)) {
             $whole = $this->getWholePart($this->number);
-            $decimal = $this->getDecimalPart($this->number);
+            $fractional = $this->getFractionalPart($this->number);
 
-            return (new self($whole))->convertNumToText() . ' Asharya ' . $this->convertAsDecimal($decimal);
+            return (new self($whole))->convertNumToText() . ' Asharya ' . $this->convertFractionalToText($fractional);
         }
 
         if ($this->numberIsSmallerThanTen($this->number)) {
@@ -172,12 +172,18 @@ class PashtoCardinal
         return explode('.', $number)[0];    
     }
 
-    public function getDecimalPart($number) 
+    public function getFractionalPart($number) 
     {
         return explode('.', $number)[1];
     }
 
-    public function convertAsDecimal($number) 
+    /**
+     * Convert the fractional parth of number to Pashto text.
+     * 
+     * @param  int|string $number
+     * @return string
+     */
+    public function convertFractionalToText($number) 
     {
         $numberAsString = '';
 
