@@ -196,7 +196,7 @@ class PashtoCardinal
     }
 
     /**
-     * Convert the fractional parth of number to Pashto text.
+     * Convert the fractional part of number to Pashto text.
      * 
      * @param  int|string $number
      * @return string
