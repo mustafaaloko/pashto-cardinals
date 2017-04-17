@@ -16,7 +16,7 @@ class PashtoCardinal
 
     public function __construct($number)
     {
-        $this->number = (int) $number;    
+        $this->number = (float) $number;    
     }
 
     /**
@@ -43,6 +43,13 @@ class PashtoCardinal
         $numberAsString = (string) $this->number;
         $numberAsArray = $this->getNumAsArray($this->number);
         $numberLength = $this->getNumLength($this->number);
+
+        if ($this->numberIsFloat($this->number)) {
+            $whole = $this->getWholePart($this->number);
+            $decimal = $this->getDecimalPart($this->number);
+
+            return (new self($whole))->convertNumToText() . ' Asharya ' . $this->convertAsDecimal($decimal);
+        }
 
         if ($this->numberIsSmallerThanTen($this->number)) {
             return static::ONES[$this->number - 1];
@@ -153,6 +160,32 @@ class PashtoCardinal
     protected function numberIsThousandOrBigger($number)
     {
         return $this->getNumLength($number) > 3;
+    }
+
+    protected function numberIsFloat($number) 
+    {
+        return sizeof(explode('.' , $number)) > 1;
+    }
+
+    public function getWholePart($number) 
+    {
+        return explode('.', $number)[0];    
+    }
+
+    public function getDecimalPart($number) 
+    {
+        return explode('.', $number)[1];
+    }
+
+    public function convertAsDecimal($number) 
+    {
+        $numberAsString = '';
+
+        foreach (array_reverse($this->getNumAsArray($number)) as $index => $num) {
+            $numberAsString .= ($index == 0 ? '' : ' ') . static::ONES[$num - 1];
+        }
+
+        return $numberAsString;
     }
 
     /**

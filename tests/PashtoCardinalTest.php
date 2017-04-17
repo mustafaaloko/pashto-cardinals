@@ -93,4 +93,9 @@ class PashtoCardinalTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals((new PashtoCardinal(222))->convertToText(), 'Dwa Sawa Dwa Wisht');
     }
+
+    public function test_numbers_with_decimal_points() 
+    {
+        $this->assertEquals(PashtoCardinal::convert(123.321), 'Yaw Salo Dre Wisht Asharya Dre Dwa Yaw');
+    }
 }
