@@ -44,7 +44,7 @@ class PashtoCardinal
         $numberAsArray = $this->getNumAsArray($this->number);
         $numberLength = $this->getNumLength($this->number);
 
-        if ($this->numberIsFloat($this->number)) {
+        if ($this->numberHasDecimalPoint($this->number)) {
             $whole = $this->getWholePart($this->number);
             $fractional = $this->getFractionalPart($this->number);
 
@@ -162,16 +162,28 @@ class PashtoCardinal
         return $this->getNumLength($number) > 3;
     }
 
-    protected function numberIsFloat($number) 
+    protected function numberHasDecimalPoint($number) 
     {
         return sizeof(explode('.' , $number)) > 1;
     }
 
+    /**
+     * Get the whole part of a number, left of decimal point.
+     * 
+     * @param  int|string $number
+     * @return string
+     */
     public function getWholePart($number) 
     {
         return explode('.', $number)[0];    
     }
 
+    /**
+     * Get the fractional part of a number, right of decimal point.
+     * 
+     * @param  int|string $number
+     * @return string
+     */
     public function getFractionalPart($number) 
     {
         return explode('.', $number)[1];
