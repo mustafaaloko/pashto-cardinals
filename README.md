@@ -33,6 +33,10 @@ If you discover any security related issues, please email mustafa.aloko@gmail.co
 
 - [Mustafa Ehsan Alokozay](http://github.com/mustafaaloko)
 
+## To-Do
+
+- Adding localization support
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
